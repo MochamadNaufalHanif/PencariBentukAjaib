@@ -2675,6 +2675,7 @@
       "value": 1
     },
     {
+      "folded": true,
       "name": "LevelSelesai",
       "type": "array",
       "children": [
@@ -2687,6 +2688,11 @@
           "value": false
         }
       ]
+    },
+    {
+      "name": "Sound",
+      "type": "number",
+      "value": 0
     },
     {
       "name": "LoadingKe",
@@ -2727,6 +2733,11 @@
       "name": "SFXVALUE",
       "type": "string",
       "value": "100"
+    },
+    {
+      "name": "Music",
+      "type": "number",
+      "value": 0
     }
   ],
   "layouts": [
@@ -4866,13 +4877,6 @@
       },
       "events": [
         {
-          "type": "BuiltinCommonInstructions::Link",
-          "include": {
-            "includeConfig": 0
-          },
-          "target": "SoundAndMusic"
-        },
-        {
           "folded": true,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
@@ -5090,14 +5094,14 @@
           "actions": [
             {
               "type": {
-                "value": "PlaySoundCanal"
+                "value": "PlayMusicCanal"
               },
               "parameters": [
                 "",
                 "bgm main menu - pencari bentuk ajaib.wav",
-                "1",
+                "3",
                 "yes",
-                "",
+                "100",
                 "1"
               ]
             },
@@ -5146,6 +5150,62 @@
                 "\"easeOutQuad\"",
                 "1",
                 ""
+              ]
+            }
+          ],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "Sound",
+                    "=",
+                    "1"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
+                  },
+                  "parameters": [
+                    "SFX",
+                    "no",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "Sound",
+                    "=",
+                    "0"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
+                  },
+                  "parameters": [
+                    "SFX",
+                    "yes",
+                    ""
+                  ]
+                }
               ]
             }
           ]
@@ -5232,6 +5292,19 @@
           "actions": [
             {
               "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "play button - pencari bentuk ajaib.wav",
+                "2",
+                "no",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "SetStringVariable"
               },
               "parameters": [
@@ -5242,23 +5315,19 @@
             },
             {
               "type": {
-                "value": "PlaySoundCanal"
-              },
-              "parameters": [
-                "",
-                "play button - pencari bentuk ajaib.wav",
-                "2",
-                "no",
-                "",
-                "1"
-              ]
-            },
-            {
-              "type": {
                 "value": "Wait"
               },
               "parameters": [
                 "0.25"
+              ]
+            },
+            {
+              "type": {
+                "value": "PauseMusicCanal"
+              },
+              "parameters": [
+                "",
+                "3"
               ]
             },
             {
@@ -5415,6 +5484,7 @@
           ]
         },
         {
+          "folded": true,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -5438,7 +5508,7 @@
                 "setting button - pencari bentuk ajaib.wav",
                 "2",
                 "no",
-                "",
+                "100",
                 "1"
               ]
             },
@@ -5485,32 +5555,6 @@
             }
           ],
           "events": [
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "BooleanVariable"
-                  },
-                  "parameters": [
-                    "Btn_Setting_DiKlik",
-                    "True",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "ShowLayer"
-                  },
-                  "parameters": [
-                    "",
-                    "\"Pengaturan\""
-                  ]
-                }
-              ]
-            },
             {
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
@@ -5585,6 +5629,32 @@
                     "\"easeOutQuint\"",
                     "1",
                     ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "Btn_Setting_DiKlik",
+                    "True",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ShowLayer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Pengaturan\""
                   ]
                 }
               ]
@@ -5680,6 +5750,12 @@
                 "ButtonFSM",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
           "actions": [
@@ -5692,7 +5768,7 @@
                 "x button - pencari bentuk ajaib.wav",
                 "2",
                 "no",
-                "",
+                "100",
                 "1"
               ]
             },
@@ -5824,12 +5900,6 @@
                     "Tween",
                     "\"Keluar\""
                   ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": []
                 }
               ],
               "actions": [
@@ -5928,113 +5998,128 @@
           "conditions": [
             {
               "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenToggled"
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "BGM",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
               },
               "parameters": [
                 "BGM",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
-          "actions": [],
-          "events": [
+          "actions": [
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to on - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "yes",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "BGM2",
-                    "True",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to off - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to off - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "no",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "BGM2",
-                    "False",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "BGM2",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "BGM",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "BGM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to on - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "BGM2",
+                "True",
+                ""
               ]
             }
           ]
@@ -6121,116 +6206,138 @@
           "conditions": [
             {
               "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenToggled"
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "SFX",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
               },
               "parameters": [
                 "SFX",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
-          "actions": [],
-          "events": [
+          "actions": [
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to on - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "yes",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "SFX2",
-                    "True",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to off - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to off - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "no",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "SFX2",
-                    "False",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Sound",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "SFX2",
+                "False",
+                ""
               ]
             }
           ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "SFX",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "SFX",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to on - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Sound",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "SFX2",
+                "True",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Link",
+          "include": {
+            "includeConfig": 0
+          },
+          "target": "SoundAndMusic"
         }
       ],
       "layers": [
@@ -6420,7 +6527,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.3325387091250787,
+        "zoomFactor": 0.2817259932079571,
         "windowMask": false
       },
       "objectsGroups": [],
@@ -7739,13 +7846,6 @@
       },
       "events": [
         {
-          "type": "BuiltinCommonInstructions::Link",
-          "include": {
-            "includeConfig": 0
-          },
-          "target": "SoundAndMusic"
-        },
-        {
           "folded": true,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
@@ -7963,11 +8063,11 @@
           "actions": [
             {
               "type": {
-                "value": "RePlaySoundCanal"
+                "value": "RePlayMusicCanal"
               },
               "parameters": [
                 "",
-                "1"
+                "3"
               ]
             },
             {
@@ -8321,7 +8421,7 @@
                     "right_left cursor in select level - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -8695,7 +8795,7 @@
                     "right_left cursor in select level - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -9282,6 +9382,22 @@
             },
             {
               "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "DebuggerTools::ConsoleLog"
+                  },
+                  "parameters": [
+                    "ToString(Gembok.Opacity::Value())",
+                    "\"info\"",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
                   "type": {
@@ -9317,6 +9433,17 @@
                 },
                 {
                   "type": {
+                    "value": "OpacityCapability::OpacityBehavior::Value"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Opacity",
+                    ">",
+                    "0"
+                  ]
+                },
+                {
+                  "type": {
                     "value": "BuiltinCommonInstructions::Once"
                   },
                   "parameters": []
@@ -9342,15 +9469,15 @@
                 },
                 {
                   "type": {
-                    "value": "PlayMusicCanal"
+                    "value": "PlaySoundCanal"
                   },
                   "parameters": [
                     "",
                     "gembok masih kekunci - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
-                    ""
+                    "100",
+                    "1"
                   ]
                 }
               ]
@@ -9447,6 +9574,40 @@
                     "0.25",
                     ""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "ButtonFSM",
+                    "no"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"Hilang\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "ButtonFSM",
+                    "yes"
+                  ]
                 }
               ]
             },
@@ -9528,6 +9689,17 @@
                 },
                 {
                   "type": {
+                    "value": "OpacityCapability::OpacityBehavior::Value"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Opacity",
+                    ">",
+                    "0"
+                  ]
+                },
+                {
+                  "type": {
                     "value": "BuiltinCommonInstructions::Once"
                   },
                   "parameters": []
@@ -9553,15 +9725,15 @@
                 },
                 {
                   "type": {
-                    "value": "PlayMusicCanal"
+                    "value": "PlaySoundCanal"
                   },
                   "parameters": [
                     "",
                     "gembok masih kekunci - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
-                    ""
+                    "100",
+                    "1"
                   ]
                 }
               ]
@@ -10321,6 +10493,13 @@
             }
           ],
           "parameters": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::Link",
+          "include": {
+            "includeConfig": 0
+          },
+          "target": "SoundAndMusic"
         }
       ],
       "layers": [
@@ -10452,7 +10631,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.37971210019479756,
+        "zoomFactor": 0.5468750000000064,
         "windowMask": false
       },
       "objectsGroups": [],
@@ -10842,6 +11021,38 @@
           "x": 615,
           "y": -235,
           "zOrder": 36,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "Setting",
+          "name": "BGM",
+          "persistentUuid": "7a66648f-6bd8-4933-b0ed-74b5b243409d",
+          "width": 0,
+          "x": 675,
+          "y": -450,
+          "zOrder": 37,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "Setting",
+          "name": "SFX",
+          "persistentUuid": "64f73763-1db2-4d22-86e6-d32ebc1f656d",
+          "width": 0,
+          "x": 675,
+          "y": -340,
+          "zOrder": 38,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -12030,13 +12241,6 @@
       },
       "events": [
         {
-          "type": "BuiltinCommonInstructions::Link",
-          "include": {
-            "includeConfig": 0
-          },
-          "target": "SoundAndMusic"
-        },
-        {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -12101,15 +12305,15 @@
           "actions": [
             {
               "type": {
-                "value": "PlaySoundCanal"
+                "value": "PlayMusicCanal"
               },
               "parameters": [
                 "",
                 "carnival bgm - pencari bentuk ajaib.wav",
                 "1",
-                "",
-                "",
-                ""
+                "yes",
+                "100",
+                "1"
               ]
             },
             {
@@ -12199,6 +12403,7 @@
           "comment": "Setting"
         },
         {
+          "folded": true,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -12213,6 +12418,19 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "pause button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
             {
               "type": {
                 "value": "EnableLayerEffect"
@@ -12489,120 +12707,36 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "SFX"
+          "comment": "BGM"
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
               "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenToggled"
+                "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "SFX",
+                "BGM",
+                "ButtonFSM",
                 ""
               ]
             }
           ],
-          "actions": [],
-          "events": [
+          "actions": [
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to on - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "yes",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "SFX2",
-                    "True",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to off - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "no",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "SFX2",
-                    "False",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+              },
+              "parameters": [
+                "BGM",
+                "Tween",
+                "\"Hover\"",
+                "1.05",
+                "\"easeOutQuad\"",
+                "0.15",
+                "",
+                "yes"
               ]
             }
           ]
@@ -12616,7 +12750,7 @@
                 "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "ButtonFSM",
                 ""
               ]
@@ -12628,7 +12762,7 @@
                 "value": "Tween::TweenBehavior::AddObjectScaleTween3"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "Tween",
                 "\"Hover\"",
                 "1",
@@ -12645,29 +12779,128 @@
           "conditions": [
             {
               "type": {
-                "value": "ButtonStates::ButtonFSM::IsHovered"
+                "value": "ButtonStates::ButtonFSM::IsClicked"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "ButtonFSM",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "BGM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
           "actions": [
             {
               "type": {
-                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+                "value": "PlaySoundCanal"
               },
               "parameters": [
-                "SFX",
-                "Tween",
-                "\"Hover\"",
-                "1.05",
-                "\"easeOutQuad\"",
-                "0.15",
                 "",
-                "yes"
+                "switch to off - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "BGM2",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "BGM",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "BGM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to on - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "BGM2",
+                "True",
+                ""
               ]
             }
           ]
@@ -12682,123 +12915,7 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "BGM"
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenToggled"
-              },
-              "parameters": [
-                "BGM",
-                ""
-              ]
-            }
-          ],
-          "actions": [],
-          "events": [
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to on - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "yes",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "BGM2",
-                    "True",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to off - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "no",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "BGM2",
-                    "False",
-                    ""
-                  ]
-                }
-              ]
-            }
-          ]
+          "comment": "SFX"
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
@@ -12808,7 +12925,7 @@
                 "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "ButtonFSM",
                 ""
               ]
@@ -12820,7 +12937,7 @@
                 "value": "Tween::TweenBehavior::AddObjectScaleTween3"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "Tween",
                 "\"Hover\"",
                 "1.05",
@@ -12841,7 +12958,7 @@
                 "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "ButtonFSM",
                 ""
               ]
@@ -12853,7 +12970,7 @@
                 "value": "Tween::TweenBehavior::AddObjectScaleTween3"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "Tween",
                 "\"Hover\"",
                 "1",
@@ -12861,6 +12978,137 @@
                 "0.15",
                 "",
                 "yes"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "SFX",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "SFX",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to off - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Sound",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "SFX2",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "SFX",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "SFX",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to on - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Sound",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "SFX2",
+                "True",
+                ""
               ]
             }
           ]
@@ -12899,6 +13147,19 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "x button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
             {
               "type": {
                 "value": "ChangeTimeScale"
@@ -13178,6 +13439,19 @@
           "actions": [
             {
               "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "back to home button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "ChangeLayer"
               },
               "parameters": [
@@ -13342,10 +13616,10 @@
               },
               "parameters": [
                 "",
-                "correct answer - pencari bentuk ajaib.wav",
+                "continue after win button - pencari bentuk ajaib.wav",
                 "2",
                 "",
-                "",
+                "100",
                 "1"
               ]
             },
@@ -13508,7 +13782,7 @@
                     "correct answer - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -13718,7 +13992,7 @@
                     "setelah jawaban benar trus bentuknya pindah keatas - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 }
@@ -13777,7 +14051,7 @@
                     "correct answer - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -13987,7 +14261,7 @@
                     "setelah jawaban benar trus bentuknya pindah keatas - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 }
@@ -14046,7 +14320,7 @@
                     "correct answer - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -14256,7 +14530,7 @@
                     "setelah jawaban benar trus bentuknya pindah keatas - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 }
@@ -14790,6 +15064,13 @@
               ]
             }
           ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Link",
+          "include": {
+            "includeConfig": 0
+          },
+          "target": "SoundAndMusic"
         }
       ],
       "layers": [
@@ -15041,7 +15322,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.3553434558816994,
+        "zoomFactor": 0.2386775827025788,
         "windowMask": false
       },
       "objectsGroups": [],
@@ -15462,6 +15743,38 @@
           "x": 709,
           "y": -336,
           "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "Setting",
+          "name": "BGM",
+          "persistentUuid": "91c681a5-5cef-4f96-b843-97a5e79d0423",
+          "width": 0,
+          "x": 675,
+          "y": -450,
+          "zOrder": 37,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "Setting",
+          "name": "SFX",
+          "persistentUuid": "6f8a108b-ed95-4cb8-94be-cf5fa308257f",
+          "width": 0,
+          "x": 675,
+          "y": -340,
+          "zOrder": 38,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -16513,13 +16826,6 @@
       },
       "events": [
         {
-          "type": "BuiltinCommonInstructions::Link",
-          "include": {
-            "includeConfig": 0
-          },
-          "target": "SoundAndMusic"
-        },
-        {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -16534,7 +16840,7 @@
           "actions": [
             {
               "type": {
-                "value": "PlaySoundCanal"
+                "value": "PlayMusicCanal"
               },
               "parameters": [
                 "",
@@ -16625,6 +16931,19 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "pause button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
             {
               "type": {
                 "value": "EnableLayerEffect"
@@ -16901,120 +17220,36 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "SFX"
+          "comment": "BGM"
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
               "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenToggled"
+                "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "SFX",
+                "BGM",
+                "ButtonFSM",
                 ""
               ]
             }
           ],
-          "actions": [],
-          "events": [
+          "actions": [
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to on - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "yes",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "SFX2",
-                    "True",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to off - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "no",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "SFX2",
-                    "False",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+              },
+              "parameters": [
+                "BGM",
+                "Tween",
+                "\"Hover\"",
+                "1.05",
+                "\"easeOutQuad\"",
+                "0.15",
+                "",
+                "yes"
               ]
             }
           ]
@@ -17028,7 +17263,7 @@
                 "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "ButtonFSM",
                 ""
               ]
@@ -17040,7 +17275,7 @@
                 "value": "Tween::TweenBehavior::AddObjectScaleTween3"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "Tween",
                 "\"Hover\"",
                 "1",
@@ -17057,29 +17292,128 @@
           "conditions": [
             {
               "type": {
-                "value": "ButtonStates::ButtonFSM::IsHovered"
+                "value": "ButtonStates::ButtonFSM::IsClicked"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "ButtonFSM",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "BGM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
           "actions": [
             {
               "type": {
-                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+                "value": "PlaySoundCanal"
               },
               "parameters": [
-                "SFX",
-                "Tween",
-                "\"Hover\"",
-                "1.05",
-                "\"easeOutQuad\"",
-                "0.15",
                 "",
-                "yes"
+                "switch to off - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "BGM2",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "BGM",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "BGM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to on - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "BGM2",
+                "True",
+                ""
               ]
             }
           ]
@@ -17094,120 +17428,36 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "BGM"
+          "comment": "SFX"
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
               "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenToggled"
+                "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "BGM",
+                "SFX",
+                "ButtonFSM",
                 ""
               ]
             }
           ],
-          "actions": [],
-          "events": [
+          "actions": [
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to on - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "yes",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "BGM2",
-                    "True",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to off - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "no",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "BGM2",
-                    "False",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+              },
+              "parameters": [
+                "SFX",
+                "Tween",
+                "\"Hover\"",
+                "1.05",
+                "\"easeOutQuad\"",
+                "0.15",
+                "",
+                "yes"
               ]
             }
           ]
@@ -17221,7 +17471,7 @@
                 "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "ButtonFSM",
                 ""
               ]
@@ -17233,7 +17483,7 @@
                 "value": "Tween::TweenBehavior::AddObjectScaleTween3"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "Tween",
                 "\"Hover\"",
                 "1",
@@ -17250,29 +17500,128 @@
           "conditions": [
             {
               "type": {
-                "value": "ButtonStates::ButtonFSM::IsHovered"
+                "value": "ButtonStates::ButtonFSM::IsClicked"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "ButtonFSM",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "SFX",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
           "actions": [
             {
               "type": {
-                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+                "value": "PlaySoundCanal"
               },
               "parameters": [
-                "BGM",
-                "Tween",
-                "\"Hover\"",
-                "1.05",
-                "\"easeOutQuad\"",
-                "0.15",
                 "",
-                "yes"
+                "switch to off - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Sound",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "SFX2",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "SFX",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "SFX",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to on - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Sound",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "SFX2",
+                "True",
+                ""
               ]
             }
           ]
@@ -17305,6 +17654,19 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "x button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
             {
               "type": {
                 "value": "ChangeTimeScale"
@@ -17578,6 +17940,19 @@
           "actions": [
             {
               "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "back to home button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "SetStringVariable"
               },
               "parameters": [
@@ -17657,6 +18032,19 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "continue after win button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
             {
               "type": {
                 "value": "SetBooleanVariable"
@@ -19208,6 +19596,13 @@
               ]
             }
           ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Link",
+          "include": {
+            "includeConfig": 0
+          },
+          "target": "SoundAndMusic"
         }
       ],
       "layers": [
@@ -19459,7 +19854,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.36732575450588273,
+        "zoomFactor": 1.4790395861757404,
         "windowMask": false
       },
       "objectsGroups": [],
@@ -19892,6 +20287,38 @@
           "x": 0,
           "y": 0,
           "zOrder": 39,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "Setting",
+          "name": "BGM",
+          "persistentUuid": "031b6b2f-10de-4cf0-bfb0-c06f142e85d6",
+          "width": 0,
+          "x": 675,
+          "y": -450,
+          "zOrder": 37,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "Setting",
+          "name": "SFX",
+          "persistentUuid": "f6f97d9e-b8f3-479a-b316-4dad92c5c96b",
+          "width": 0,
+          "x": 675,
+          "y": -340,
+          "zOrder": 38,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -21201,13 +21628,6 @@
       },
       "events": [
         {
-          "type": "BuiltinCommonInstructions::Link",
-          "include": {
-            "includeConfig": 0
-          },
-          "target": "SoundAndMusic"
-        },
-        {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -21222,7 +21642,7 @@
           "actions": [
             {
               "type": {
-                "value": "PlaySoundCanal"
+                "value": "PlayMusicCanal"
               },
               "parameters": [
                 "",
@@ -21298,6 +21718,7 @@
           "comment": "Setting"
         },
         {
+          "folded": true,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -21312,6 +21733,19 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "pause button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
             {
               "type": {
                 "value": "EnableLayerEffect"
@@ -21598,120 +22032,36 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "SFX"
+          "comment": "BGM"
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
               "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenToggled"
+                "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "SFX",
+                "BGM",
+                "ButtonFSM",
                 ""
               ]
             }
           ],
-          "actions": [],
-          "events": [
+          "actions": [
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to on - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "yes",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "SFX2",
-                    "True",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to off - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "no",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "SFX2",
-                    "False",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+              },
+              "parameters": [
+                "BGM",
+                "Tween",
+                "\"Hover\"",
+                "1.05",
+                "\"easeOutQuad\"",
+                "0.15",
+                "",
+                "yes"
               ]
             }
           ]
@@ -21725,7 +22075,7 @@
                 "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "ButtonFSM",
                 ""
               ]
@@ -21737,7 +22087,7 @@
                 "value": "Tween::TweenBehavior::AddObjectScaleTween3"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "Tween",
                 "\"Hover\"",
                 "1",
@@ -21754,29 +22104,128 @@
           "conditions": [
             {
               "type": {
-                "value": "ButtonStates::ButtonFSM::IsHovered"
+                "value": "ButtonStates::ButtonFSM::IsClicked"
               },
               "parameters": [
-                "SFX",
+                "BGM",
                 "ButtonFSM",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "BGM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
           "actions": [
             {
               "type": {
-                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+                "value": "PlaySoundCanal"
               },
               "parameters": [
-                "SFX",
-                "Tween",
-                "\"Hover\"",
-                "1.05",
-                "\"easeOutQuad\"",
-                "0.15",
                 "",
-                "yes"
+                "switch to off - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "BGM2",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "BGM",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "BGM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to on - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "BGM2",
+                "True",
+                ""
               ]
             }
           ]
@@ -21791,120 +22240,36 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "BGM"
+          "comment": "SFX"
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
               "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenToggled"
+                "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "BGM",
+                "SFX",
+                "ButtonFSM",
                 ""
               ]
             }
           ],
-          "actions": [],
-          "events": [
+          "actions": [
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to on - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "yes",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "BGM2",
-                    "True",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "switch to off - pencari bentuk ajaib.wav",
-                    "2",
-                    "no",
-                    "",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "no",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetBooleanVariable"
-                  },
-                  "parameters": [
-                    "BGM2",
-                    "False",
-                    ""
-                  ]
-                }
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+              },
+              "parameters": [
+                "SFX",
+                "Tween",
+                "\"Hover\"",
+                "1.05",
+                "\"easeOutQuad\"",
+                "0.15",
+                "",
+                "yes"
               ]
             }
           ]
@@ -21918,7 +22283,7 @@
                 "value": "ButtonStates::ButtonFSM::IsHovered"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "ButtonFSM",
                 ""
               ]
@@ -21930,7 +22295,7 @@
                 "value": "Tween::TweenBehavior::AddObjectScaleTween3"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "Tween",
                 "\"Hover\"",
                 "1",
@@ -21947,29 +22312,128 @@
           "conditions": [
             {
               "type": {
-                "value": "ButtonStates::ButtonFSM::IsHovered"
+                "value": "ButtonStates::ButtonFSM::IsClicked"
               },
               "parameters": [
-                "BGM",
+                "SFX",
                 "ButtonFSM",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "SFX",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
           "actions": [
             {
               "type": {
-                "value": "Tween::TweenBehavior::AddObjectScaleTween3"
+                "value": "PlaySoundCanal"
               },
               "parameters": [
-                "BGM",
-                "Tween",
-                "\"Hover\"",
-                "1.05",
-                "\"easeOutQuad\"",
-                "0.15",
                 "",
-                "yes"
+                "switch to off - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Sound",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "SFX2",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "ButtonStates::ButtonFSM::IsClicked"
+              },
+              "parameters": [
+                "SFX",
+                "ButtonFSM",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+              },
+              "parameters": [
+                "SFX",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "switch to on - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Sound",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "SFX2",
+                "True",
+                ""
               ]
             }
           ]
@@ -22002,6 +22466,19 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "x button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
             {
               "type": {
                 "value": "ChangeTimeScale"
@@ -22275,6 +22752,19 @@
           "actions": [
             {
               "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "back to home button - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "SetStringVariable"
               },
               "parameters": [
@@ -22420,7 +22910,7 @@
                     "correct answer - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -22647,7 +23137,7 @@
                     "setelah jawaban benar trus bentuknya pindah keatas - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 }
@@ -22706,7 +23196,7 @@
                     "correct answer - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -22919,7 +23409,7 @@
                     "setelah jawaban benar trus bentuknya pindah keatas - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 }
@@ -22957,7 +23447,7 @@
                   "parameters": [
                     "Mark",
                     "BelahKetupat",
-                    "50",
+                    "60",
                     ""
                   ]
                 },
@@ -22978,7 +23468,7 @@
                     "correct answer - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -23250,7 +23740,7 @@
                     "correct answer - pencari bentuk ajaib.wav",
                     "2",
                     "",
-                    "",
+                    "100",
                     "1"
                   ]
                 },
@@ -24107,6 +24597,13 @@
               ]
             }
           ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Link",
+          "include": {
+            "includeConfig": 0
+          },
+          "target": "SoundAndMusic"
         }
       ],
       "layers": [
@@ -24345,11 +24842,139 @@
           "type": "Tween::TweenBehavior"
         }
       ]
+    },
+    {
+      "b": 209,
+      "disableInputWhenNotFocused": true,
+      "mangledName": "SoundAndMusic",
+      "name": "SoundAndMusic",
+      "r": 209,
+      "standardSortMethod": true,
+      "stopSoundsOnStartup": true,
+      "title": "",
+      "v": 209,
+      "uiSettings": {},
+      "objectsGroups": [],
+      "variables": [],
+      "instances": [],
+      "objects": [],
+      "objectsFolderStructure": {
+        "folderName": "__ROOT"
+      },
+      "events": [],
+      "layers": [
+        {
+          "ambientLightColorB": 200,
+          "ambientLightColorG": 200,
+          "ambientLightColorR": 200,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 3,
+          "cameraType": "",
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": [
+            {
+              "effectType": "Scene3D::HemisphereLight",
+              "name": "3D Ambient Hemisphere Light",
+              "doubleParameters": {
+                "elevation": 40,
+                "intensity": 0.33,
+                "rotation": 300
+              },
+              "stringParameters": {
+                "groundColor": "127;127;127",
+                "skyColor": "255;255;255",
+                "top": "Z+"
+              },
+              "booleanParameters": {}
+            },
+            {
+              "effectType": "Scene3D::DirectionalLight",
+              "name": "3D Sun Light",
+              "doubleParameters": {
+                "distanceFromCamera": 1500,
+                "elevation": 40,
+                "frustumSize": 4000,
+                "intensity": 0.75,
+                "minimumShadowBias": 0,
+                "rotation": 300
+              },
+              "stringParameters": {
+                "color": "255;255;255",
+                "shadowQuality": "medium",
+                "top": "Z+"
+              },
+              "booleanParameters": {
+                "isCastingShadow": true
+              }
+            }
+          ]
+        }
+      ],
+      "behaviorsSharedData": [
+        {
+          "name": "Animation",
+          "type": "AnimatableCapability::AnimatableBehavior"
+        },
+        {
+          "name": "ButtonFSM",
+          "type": "ButtonStates::ButtonFSM"
+        },
+        {
+          "name": "ButtonScaleTween",
+          "type": "ButtonStates::ButtonScaleTween"
+        },
+        {
+          "name": "Effect",
+          "type": "EffectCapability::EffectBehavior"
+        },
+        {
+          "name": "EllipseMovement",
+          "type": "EllipseMovement::EllipseMovement"
+        },
+        {
+          "name": "Flippable",
+          "type": "FlippableCapability::FlippableBehavior"
+        },
+        {
+          "name": "Opacity",
+          "type": "OpacityCapability::OpacityBehavior"
+        },
+        {
+          "name": "Resizable",
+          "type": "ResizableCapability::ResizableBehavior"
+        },
+        {
+          "name": "Scale",
+          "type": "ScalableCapability::ScalableBehavior"
+        },
+        {
+          "name": "Tween",
+          "type": "Tween::TweenBehavior"
+        }
+      ]
     }
   ],
   "externalEvents": [
     {
-      "associatedLayout": "Level1",
+      "associatedLayout": "SoundAndMusic",
       "name": "SoundAndMusic",
       "events": [
         {
@@ -24357,307 +24982,121 @@
           "conditions": [
             {
               "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
+                "value": "DepartScene"
               },
               "parameters": [
-                "BGM",
                 ""
               ]
             }
           ],
-          "actions": [
+          "actions": [],
+          "events": [
             {
-              "type": {
-                "value": "ModVolumeSoundCanal"
-              },
-              "parameters": [
-                "",
-                "1",
-                "=",
-                "100"
-              ]
-            },
-            {
-              "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-              },
-              "parameters": [
-                "BGM",
-                "",
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": true,
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-              },
-              "parameters": [
-                "BGM",
-                ""
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "ModVolumeSoundCanal"
-              },
-              "parameters": [
-                "",
-                "1",
-                "=",
-                "0"
-              ]
-            },
-            {
-              "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-              },
-              "parameters": [
-                "BGM",
-                "no",
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-              },
-              "parameters": [
-                "SFX",
-                ""
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "ModVolumeSoundCanal"
-              },
-              "parameters": [
-                "",
-                "2",
-                "=",
-                "100"
-              ]
-            },
-            {
-              "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-              },
-              "parameters": [
-                "SFX",
-                "",
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": true,
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::IsChecked"
-              },
-              "parameters": [
-                "SFX",
-                ""
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "ModVolumeSoundCanal"
-              },
-              "parameters": [
-                "",
-                "2",
-                "=",
-                "0"
-              ]
-            },
-            {
-              "type": {
-                "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-              },
-              "parameters": [
-                "SFX",
-                "no",
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "ButtonStates::ButtonFSM::IsClicked"
-              },
-              "parameters": [
-                "Btn_Home",
-                "ButtonFSM",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "PlaySoundCanal"
-              },
-              "parameters": [
-                "",
-                "back to home button - pencari bentuk ajaib.wav",
-                "2",
-                "",
-                "",
-                "1"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "ButtonStates::ButtonFSM::IsClicked"
-              },
-              "parameters": [
-                "Btn_Setting",
-                "ButtonFSM",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "PlaySoundCanal"
-              },
-              "parameters": [
-                "",
-                "pause button - pencari bentuk ajaib.wav",
-                "2",
-                "",
-                "",
-                "1"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "ButtonStates::ButtonFSM::IsClicked"
-              },
-              "parameters": [
-                "Btn_Lanjut",
-                "ButtonFSM",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "PlaySoundCanal"
-              },
-              "parameters": [
-                "",
-                "continue after win button - pencari bentuk ajaib.wav",
-                "2",
-                "",
-                "",
-                "1"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Or"
-              },
-              "parameters": [],
-              "subInstructions": [
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
                 {
                   "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenChecked"
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "BGM2",
+                    "True",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
                   },
                   "parameters": [
                     "BGM",
-                    "ButtonFSM"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "ButtonFSM"
+                    "",
+                    ""
                   ]
                 }
               ]
             },
             {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
-            }
-          ],
-          "actions": [
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "BGM2",
+                    "False",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
+                  },
+                  "parameters": [
+                    "BGM",
+                    "no",
+                    ""
+                  ]
+                }
+              ]
+            },
             {
-              "type": {
-                "value": "PlaySoundCanal"
-              },
-              "parameters": [
-                "",
-                "switch to on - pencari bentuk ajaib.wav",
-                "2",
-                "",
-                "",
-                "1"
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "SFX2",
+                    "True",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
+                  },
+                  "parameters": [
+                    "SFX",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "SFX2",
+                    "False",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
+                  },
+                  "parameters": [
+                    "SFX",
+                    "no",
+                    ""
+                  ]
+                }
               ]
             }
           ]
@@ -24667,49 +25106,93 @@
           "conditions": [
             {
               "type": {
-                "value": "BuiltinCommonInstructions::Or"
+                "value": "NumberVariable"
               },
-              "parameters": [],
-              "subInstructions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenUnchecked"
-                  },
-                  "parameters": [
-                    "BGM",
-                    "ButtonFSM"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::HasJustBeenUnchecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "ButtonFSM"
-                  ]
-                }
+              "parameters": [
+                "Sound",
+                "=",
+                "1"
               ]
-            },
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
             }
           ],
           "actions": [
             {
               "type": {
-                "value": "PlaySoundCanal"
+                "value": "PauseSoundCanal"
               },
               "parameters": [
                 "",
-                "switch to off - pencari bentuk ajaib.wav",
-                "2",
-                "",
+                "2"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "1"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PauseMusicCanal"
+              },
+              "parameters": [
                 "",
                 "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PauseMusicCanal"
+              },
+              "parameters": [
+                "",
+                "3"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Music",
+                "=",
+                "0"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "RePlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "RePlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "3"
               ]
             }
           ]
