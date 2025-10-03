@@ -1334,6 +1334,26 @@
         "preloadAsSound": false,
         "preloadInCache": false,
         "userAdded": false
+      },
+      {
+        "file": "winning scene bgm - pencari bentuk ajaib.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "winning scene bgm - pencari bentuk ajaib.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -2670,24 +2690,43 @@
   "objectsGroups": [],
   "variables": [
     {
-      "name": "LevelSaatIni",
-      "type": "number",
-      "value": 1
+      "name": "temp",
+      "type": "string",
+      "value": ""
     },
     {
-      "folded": true,
-      "name": "LevelSelesai",
-      "type": "array",
+      "name": "GameStorage",
+      "type": "structure",
       "children": [
         {
-          "type": "boolean",
-          "value": false
+          "name": "LevelSaatIni",
+          "type": "number",
+          "value": 1
         },
         {
-          "type": "boolean",
-          "value": false
+          "name": "LevelSelesai",
+          "type": "array",
+          "children": [
+            {
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "type": "boolean",
+              "value": false
+            }
+          ]
         }
       ]
+    },
+    {
+      "name": "LoadingKe",
+      "type": "string",
+      "value": ""
     },
     {
       "name": "Sound",
@@ -2695,9 +2734,9 @@
       "value": 0
     },
     {
-      "name": "LoadingKe",
-      "type": "string",
-      "value": ""
+      "name": "Music",
+      "type": "number",
+      "value": 0
     },
     {
       "name": "Btn_Setting_DiKlik",
@@ -2723,21 +2762,6 @@
       "name": "Lewat_PilihanLevel",
       "type": "boolean",
       "value": false
-    },
-    {
-      "name": "BGMVALUE",
-      "type": "string",
-      "value": "100"
-    },
-    {
-      "name": "SFXVALUE",
-      "type": "string",
-      "value": "100"
-    },
-    {
-      "name": "Music",
-      "type": "number",
-      "value": 0
     }
   ],
   "layouts": [
@@ -4877,6 +4901,183 @@
       },
       "events": [
         {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "",
+                "temp"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "temp",
+                "GameStorage"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "bgm main menu - pencari bentuk ajaib.wav",
+                "3",
+                "yes",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "EnableLayerEffect"
+              },
+              "parameters": [
+                "",
+                "",
+                "\"Blur/Pengaturan\"",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+              },
+              "parameters": [
+                "Putih",
+                "Tween",
+                "\"FadeIn\"",
+                "0",
+                "\"easeOutSine\"",
+                "1.5",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                "0.5"
+              ]
+            },
+            {
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectPositionYTween2"
+              },
+              "parameters": [
+                "Judul",
+                "Tween",
+                "\"Masuk\"",
+                "150",
+                "\"easeOutQuad\"",
+                "1",
+                ""
+              ]
+            }
+          ],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "Sound",
+                    "=",
+                    "1"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
+                  },
+                  "parameters": [
+                    "SFX",
+                    "no",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "EcrireFichierTxt"
+                  },
+                  "parameters": [
+                    "\"GameStorage\"",
+                    "\"SavingSystemLevel\"",
+                    "ToJSON(GameStorage)"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "Sound",
+                    "=",
+                    "0"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
+                  },
+                  "parameters": [
+                    "SFX",
+                    "yes",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "EcrireFichierTxt"
+                  },
+                  "parameters": [
+                    "\"GameStorage\"",
+                    "\"SavingSystemLevel\"",
+                    "ToJSON(GameStorage)"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "folded": true,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
@@ -5067,143 +5268,6 @@
                     "Awan4",
                     "=",
                     "1280"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "DepartScene"
-              },
-              "parameters": [
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "PlayMusicCanal"
-              },
-              "parameters": [
-                "",
-                "bgm main menu - pencari bentuk ajaib.wav",
-                "3",
-                "yes",
-                "100",
-                "1"
-              ]
-            },
-            {
-              "type": {
-                "value": "EnableLayerEffect"
-              },
-              "parameters": [
-                "",
-                "",
-                "\"Blur/Pengaturan\"",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-              },
-              "parameters": [
-                "Putih",
-                "Tween",
-                "\"FadeIn\"",
-                "0",
-                "\"easeOutSine\"",
-                "1.5",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "Wait"
-              },
-              "parameters": [
-                "0.5"
-              ]
-            },
-            {
-              "type": {
-                "value": "Tween::TweenBehavior::AddObjectPositionYTween2"
-              },
-              "parameters": [
-                "Judul",
-                "Tween",
-                "\"Masuk\"",
-                "150",
-                "\"easeOutQuad\"",
-                "1",
-                ""
-              ]
-            }
-          ],
-          "events": [
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "NumberVariable"
-                  },
-                  "parameters": [
-                    "Sound",
-                    "=",
-                    "1"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "no",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "NumberVariable"
-                  },
-                  "parameters": [
-                    "Sound",
-                    "=",
-                    "0"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "SpriteToggleSwitch::SpriteToggleSwitch::SetChecked"
-                  },
-                  "parameters": [
-                    "SFX",
-                    "yes",
-                    ""
                   ]
                 }
               ]
@@ -6055,6 +6119,16 @@
                 "False",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -6120,6 +6194,16 @@
                 "BGM2",
                 "True",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
               ]
             }
           ]
@@ -6263,6 +6347,16 @@
                 "False",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -6328,6 +6422,16 @@
                 "SFX2",
                 "True",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
               ]
             }
           ]
@@ -7846,6 +7950,70 @@
       },
       "events": [
         {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "",
+                "temp"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "temp",
+                "GameStorage"
+              ]
+            },
+            {
+              "type": {
+                "value": "RePlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "3"
+              ]
+            },
+            {
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+              },
+              "parameters": [
+                "Putih",
+                "Tween",
+                "\"FadeIn\"",
+                "0",
+                "\"easeOutSine\"",
+                "1.5",
+                ""
+              ]
+            }
+          ]
+        },
+        {
           "folded": true,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
@@ -8038,50 +8206,6 @@
                     "1280"
                   ]
                 }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "DepartScene"
-              },
-              "parameters": [
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "RePlayMusicCanal"
-              },
-              "parameters": [
-                "",
-                "3"
-              ]
-            },
-            {
-              "type": {
-                "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-              },
-              "parameters": [
-                "Putih",
-                "Tween",
-                "\"FadeIn\"",
-                "0",
-                "\"easeOutSine\"",
-                "1.5",
-                ""
               ]
             }
           ]
@@ -8406,6 +8530,36 @@
                 },
                 {
                   "type": {
+                    "value": "BuiltinCommonInstructions::Or"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::Name"
+                      },
+                      "parameters": [
+                        "Btn_Gmbr_Level",
+                        "Animation",
+                        "=",
+                        "\"1\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::Name"
+                      },
+                      "parameters": [
+                        "Btn_Gmbr_Level",
+                        "Animation",
+                        "=",
+                        "\"2\""
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": {
                     "value": "BuiltinCommonInstructions::Once"
                   },
                   "parameters": []
@@ -8558,7 +8712,7 @@
                     "value": "SetNumberVariable"
                   },
                   "parameters": [
-                    "LevelSaatIni",
+                    "GameStorage.LevelSaatIni",
                     "+",
                     "1"
                   ]
@@ -8760,6 +8914,706 @@
               "conditions": [
                 {
                   "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSaatIni",
+                    "=",
+                    "1"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"Hilang\"",
+                    "0",
+                    "\"easeOutQuad\"",
+                    "0.1",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "Level",
+                    "Animation",
+                    "=",
+                    "\"1\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "Animation",
+                    "=",
+                    "\"Mudah\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"1\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"Hilang\"",
+                    "0",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "ButtonFSM",
+                    "no"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"Muncul\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "ButtonFSM",
+                    "yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSaatIni",
+                    "=",
+                    "2"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "Level",
+                    "Animation",
+                    "=",
+                    "\"2\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "Animation",
+                    "=",
+                    "\"Normal\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"2\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"Hilang\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "ButtonFSM",
+                    "yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSaatIni",
+                    "=",
+                    "2"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSelesai[0]",
+                    "False",
+                    "2"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "OpacityCapability::OpacityBehavior::Value"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Opacity",
+                    "<=",
+                    "1"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"Muncul\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"Hilang\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "ButtonFSM",
+                    "yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "ButtonStates::ButtonFSM::IsClicked"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "ButtonFSM",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::Name"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"2\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Distance"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Btn_Gmbr_Level",
+                    "50",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "OpacityCapability::OpacityBehavior::Value"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Opacity",
+                    ">",
+                    "0"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ShakeObject::ShakeObject_PositionAngleScale::ShakeObject_PositionAngleScale"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "ShakeObject_PositionAngleScale",
+                    "0.5",
+                    "3",
+                    "3",
+                    "3",
+                    "3",
+                    "0.08",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "gembok masih kekunci - pencari bentuk ajaib.wav",
+                    "2",
+                    "",
+                    "100",
+                    "1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSelesai[0]",
+                    "True",
+                    "2"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"Muncul\"",
+                    "0",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSaatIni",
+                    "=",
+                    "3"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "Level",
+                    "Animation",
+                    "=",
+                    "\"3\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "Animation",
+                    "=",
+                    "\"Sulit\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"3\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"Muncul\"",
+                    "0",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "ButtonFSM",
+                    "no"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"Hilang\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "ButtonFSM",
+                    "yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSaatIni",
+                    "=",
+                    "3"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSelesai[1]",
+                    "False",
+                    "2"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"Muncul\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "ButtonStates::ButtonFSM::IsClicked"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "ButtonFSM",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::Name"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"3\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Distance"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Btn_Gmbr_Level",
+                    "50",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "OpacityCapability::OpacityBehavior::Value"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Opacity",
+                    ">",
+                    "0"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ShakeObject::ShakeObject_PositionAngleScale::ShakeObject_PositionAngleScale"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "ShakeObject_PositionAngleScale",
+                    "0.5",
+                    "3",
+                    "3",
+                    "3",
+                    "3",
+                    "0.08",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "gembok masih kekunci - pencari bentuk ajaib.wav",
+                    "2",
+                    "",
+                    "100",
+                    "1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSelesai[1]",
+                    "True",
+                    "2"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"Muncul\"",
+                    "0",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Or"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "value": "Tween::IsPlaying"
+                      },
+                      "parameters": [
+                        "Btn_Back",
+                        "Tween",
+                        "\"GeserMasuk\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Tween::IsPlaying"
+                      },
+                      "parameters": [
+                        "Btn_Back",
+                        "Tween",
+                        "\"GeserKeluar\""
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "ButtonFSM",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "ButtonFSM",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "ButtonFSM",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
                     "value": "ButtonStates::ButtonFSM::IsClicked"
                   },
                   "parameters": [
@@ -8776,6 +9630,36 @@
                     "Btn_Next",
                     "Tween",
                     "\"GeserMasuk2\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Or"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::Name"
+                      },
+                      "parameters": [
+                        "Btn_Gmbr_Level",
+                        "Animation",
+                        "=",
+                        "\"2\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::Name"
+                      },
+                      "parameters": [
+                        "Btn_Gmbr_Level",
+                        "Animation",
+                        "=",
+                        "\"3\""
+                      ]
+                    }
                   ]
                 },
                 {
@@ -8932,7 +9816,7 @@
                     "value": "SetNumberVariable"
                   },
                   "parameters": [
-                    "LevelSaatIni",
+                    "GameStorage.LevelSaatIni",
                     "-",
                     "1"
                   ]
@@ -9134,653 +10018,13 @@
               "conditions": [
                 {
                   "type": {
-                    "value": "NumberVariable"
-                  },
-                  "parameters": [
-                    "LevelSaatIni",
-                    "=",
-                    "1"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Tween",
-                    "\"Hilang\"",
-                    "0",
-                    "\"easeOutQuad\"",
-                    "0.1",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "Level",
-                    "Animation",
-                    "=",
-                    "\"1\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "TingkatKesulitan",
-                    "Animation",
-                    "=",
-                    "\"Mudah\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "Animation",
-                    "=",
-                    "\"1\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Btn_Back",
-                    "Tween",
-                    "\"Hilang\"",
-                    "0",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Back",
-                    "ButtonFSM",
-                    "no"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Btn_Next",
-                    "Tween",
-                    "\"Muncul\"",
-                    "255",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Next",
-                    "ButtonFSM",
-                    "yes"
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "NumberVariable"
-                  },
-                  "parameters": [
-                    "LevelSaatIni",
-                    "=",
-                    "2"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "Level",
-                    "Animation",
-                    "=",
-                    "\"2\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "TingkatKesulitan",
-                    "Animation",
-                    "=",
-                    "\"Normal\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "Animation",
-                    "=",
-                    "\"2\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Btn_Back",
-                    "Tween",
-                    "\"Hilang\"",
-                    "255",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Back",
-                    "ButtonFSM",
-                    "yes"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Btn_Next",
-                    "Tween",
-                    "\"Muncul\"",
-                    "255",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Next",
-                    "ButtonFSM",
-                    "yes"
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "NumberVariable"
-                  },
-                  "parameters": [
-                    "LevelSaatIni",
-                    "=",
-                    "2"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BooleanVariable"
-                  },
-                  "parameters": [
-                    "LevelSelesai[0]",
-                    "False",
-                    "2"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Tween",
-                    "\"Muncul\"",
-                    "255",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "value": "DebuggerTools::ConsoleLog"
-                  },
-                  "parameters": [
-                    "ToString(Gembok.Opacity::Value())",
-                    "\"info\"",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "ButtonStates::ButtonFSM::IsClicked"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "ButtonFSM",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::Name"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "Animation",
-                    "=",
-                    "\"2\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Distance"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Btn_Gmbr_Level",
-                    "50",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "OpacityCapability::OpacityBehavior::Value"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Opacity",
-                    ">",
-                    "0"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "ShakeObject::ShakeObject_PositionAngleScale::ShakeObject_PositionAngleScale"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "ShakeObject_PositionAngleScale",
-                    "0.5",
-                    "3",
-                    "3",
-                    "3",
-                    "3",
-                    "0.08",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "gembok masih kekunci - pencari bentuk ajaib.wav",
-                    "2",
-                    "",
-                    "100",
-                    "1"
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "BooleanVariable"
-                  },
-                  "parameters": [
-                    "LevelSelesai[0]",
-                    "True",
-                    "2"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Tween",
-                    "\"Muncul\"",
-                    "0",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "NumberVariable"
-                  },
-                  "parameters": [
-                    "LevelSaatIni",
-                    "=",
-                    "3"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "Level",
-                    "Animation",
-                    "=",
-                    "\"3\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "TingkatKesulitan",
-                    "Animation",
-                    "=",
-                    "\"Sulit\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "Animation",
-                    "=",
-                    "\"3\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Btn_Next",
-                    "Tween",
-                    "\"Muncul\"",
-                    "0",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Next",
-                    "ButtonFSM",
-                    "no"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Btn_Back",
-                    "Tween",
-                    "\"Hilang\"",
-                    "255",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Back",
-                    "ButtonFSM",
-                    "yes"
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "NumberVariable"
-                  },
-                  "parameters": [
-                    "LevelSaatIni",
-                    "=",
-                    "3"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BooleanVariable"
-                  },
-                  "parameters": [
-                    "LevelSelesai[1]",
-                    "False",
-                    "2"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Tween",
-                    "\"Muncul\"",
-                    "255",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "ButtonStates::ButtonFSM::IsClicked"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "ButtonFSM",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::Name"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "Animation",
-                    "=",
-                    "\"3\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Distance"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Btn_Gmbr_Level",
-                    "50",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "OpacityCapability::OpacityBehavior::Value"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Opacity",
-                    ">",
-                    "0"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "ShakeObject::ShakeObject_PositionAngleScale::ShakeObject_PositionAngleScale"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "ShakeObject_PositionAngleScale",
-                    "0.5",
-                    "3",
-                    "3",
-                    "3",
-                    "3",
-                    "0.08",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "gembok masih kekunci - pencari bentuk ajaib.wav",
-                    "2",
-                    "",
-                    "100",
-                    "1"
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "BooleanVariable"
-                  },
-                  "parameters": [
-                    "LevelSelesai[1]",
-                    "True",
-                    "2"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
-                  },
-                  "parameters": [
-                    "Gembok",
-                    "Tween",
-                    "\"Muncul\"",
-                    "0",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
                     "value": "BuiltinCommonInstructions::Or"
                   },
                   "parameters": [],
                   "subInstructions": [
                     {
                       "type": {
-                        "value": "Tween::IsPlaying"
+                        "value": "Tween::HasFinished"
                       },
                       "parameters": [
                         "Btn_Back",
@@ -9790,72 +10034,7 @@
                     },
                     {
                       "type": {
-                        "value": "Tween::IsPlaying"
-                      },
-                      "parameters": [
-                        "Btn_Back",
-                        "Tween",
-                        "\"GeserKeluar\""
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Back",
-                    "ButtonFSM",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Next",
-                    "ButtonFSM",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "ButtonFSM",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Or"
-                  },
-                  "parameters": [],
-                  "subInstructions": [
-                    {
-                      "type": {
-                        "value": "Tween::IsPlaying"
-                      },
-                      "parameters": [
-                        "Btn_Back",
-                        "Tween",
-                        "\"GeserMasuk\""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "Tween::IsPlaying"
+                        "value": "Tween::HasFinished"
                       },
                       "parameters": [
                         "Btn_Back",
@@ -10086,6 +10265,16 @@
                     "ButtonFSM",
                     "yes"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "EcrireFichierTxt"
+                  },
+                  "parameters": [
+                    "\"GameStorage\"",
+                    "\"SavingSystemLevel\"",
+                    "ToJSON(GameStorage)"
+                  ]
                 }
               ]
             },
@@ -10287,6 +10476,16 @@
                     "ButtonFSM",
                     "yes"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "EcrireFichierTxt"
+                  },
+                  "parameters": [
+                    "\"GameStorage\"",
+                    "\"SavingSystemLevel\"",
+                    "ToJSON(GameStorage)"
+                  ]
                 }
               ]
             },
@@ -10487,6 +10686,16 @@
                     "Btn_Gmbr_Level",
                     "ButtonFSM",
                     "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "EcrireFichierTxt"
+                  },
+                  "parameters": [
+                    "\"GameStorage\"",
+                    "\"SavingSystemLevel\"",
+                    "ToJSON(GameStorage)"
                   ]
                 }
               ]
@@ -12305,6 +12514,26 @@
           "actions": [
             {
               "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "",
+                "temp"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "temp",
+                "GameStorage"
+              ]
+            },
+            {
+              "type": {
                 "value": "PlayMusicCanal"
               },
               "parameters": [
@@ -12314,6 +12543,28 @@
                 "yes",
                 "100",
                 "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "winning scene bgm - pencari bentuk ajaib.wav",
+                "3",
+                "yes",
+                "0",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PauseMusicCanal"
+              },
+              "parameters": [
+                "",
+                "4"
               ]
             },
             {
@@ -12836,6 +13087,16 @@
                 "False",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -12901,6 +13162,16 @@
                 "BGM2",
                 "True",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
               ]
             }
           ]
@@ -13044,6 +13315,16 @@
                 "False",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -13109,6 +13390,16 @@
                 "SFX2",
                 "True",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
               ]
             }
           ]
@@ -13482,6 +13773,16 @@
                 "1.5",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -13652,6 +13953,16 @@
                 "\"Loading\"",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -13725,6 +14036,7 @@
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
+          "folded": true,
           "name": "Klik Bangun Datar",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -14597,10 +14909,20 @@
           "actions": [
             {
               "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "GameStorage.LevelSaatIni",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "SetBooleanVariable"
               },
               "parameters": [
-                "LevelSelesai[0]",
+                "GameStorage.LevelSelesai[0]",
                 "Toggle",
                 "1"
               ]
@@ -14681,6 +15003,17 @@
             },
             {
               "type": {
+                "value": "FadeMusicVolume"
+              },
+              "parameters": [
+                "",
+                "1",
+                "0",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "PlaySoundCanal"
               },
               "parameters": [
@@ -14689,6 +15022,26 @@
                 "2",
                 "",
                 "",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "RePlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "4"
+              ]
+            },
+            {
+              "type": {
+                "value": "FadeMusicVolume"
+              },
+              "parameters": [
+                "",
+                "3",
+                "100",
                 "1"
               ]
             },
@@ -14789,6 +15142,16 @@
                 "1",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -14833,6 +15196,19 @@
               },
               "parameters": [
                 "0.5"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
@@ -14924,6 +15300,19 @@
                 "Efek",
                 "+",
                 "185"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
@@ -15025,6 +15414,19 @@
                 "Efek",
                 "+",
                 "185"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
@@ -16840,6 +17242,26 @@
           "actions": [
             {
               "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "",
+                "temp"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "temp",
+                "GameStorage"
+              ]
+            },
+            {
+              "type": {
                 "value": "PlayMusicCanal"
               },
               "parameters": [
@@ -17940,6 +18362,16 @@
           "actions": [
             {
               "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
+            },
+            {
+              "type": {
                 "value": "PlaySoundCanal"
               },
               "parameters": [
@@ -18032,6 +18464,16 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
+            },
             {
               "type": {
                 "value": "PlaySoundCanal"
@@ -19139,10 +19581,20 @@
           "actions": [
             {
               "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "GameStorage.LevelSaatIni",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "SetBooleanVariable"
               },
               "parameters": [
-                "LevelSelesai[1]",
+                "GameStorage.LevelSelesai[1]",
                 "Toggle",
                 "1"
               ]
@@ -19331,6 +19783,16 @@
                 "1",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -19389,6 +19851,19 @@
                 "\"easeOutQuad\"",
                 "1.5",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
@@ -19466,6 +19941,19 @@
                 "Efek",
                 "+",
                 "195"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
@@ -19557,6 +20045,19 @@
                 "Efek",
                 "+",
                 "190"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
@@ -19854,7 +20355,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 1.4790395861757404,
+        "zoomFactor": 0.4633111824513986,
         "windowMask": false
       },
       "objectsGroups": [],
@@ -21642,6 +22143,26 @@
           "actions": [
             {
               "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "",
+                "temp"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "temp",
+                "GameStorage"
+              ]
+            },
+            {
+              "type": {
                 "value": "PlayMusicCanal"
               },
               "parameters": [
@@ -22161,6 +22682,16 @@
                 "False",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -22226,6 +22757,16 @@
                 "BGM2",
                 "True",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
               ]
             }
           ]
@@ -22369,6 +22910,16 @@
                 "False",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -22434,6 +22985,16 @@
                 "SFX2",
                 "True",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
               ]
             }
           ]
@@ -22750,6 +23311,16 @@
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
+            },
             {
               "type": {
                 "value": "PlaySoundCanal"
@@ -24045,6 +24616,26 @@
           "actions": [
             {
               "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "GameStorage.LevelSaatIni",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "GameStorage.LevelSelesai[2]",
+                "Toggle",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "ActivateBehavior"
               },
               "parameters": [
@@ -24241,6 +24832,16 @@
                 "1",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "ToJSON(GameStorage)"
+              ]
             }
           ]
         },
@@ -24299,6 +24900,19 @@
                 "\"easeOutQuad\"",
                 "1.5",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
@@ -24376,6 +24990,19 @@
                 "Efek",
                 "+",
                 "190"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
@@ -24471,6 +25098,19 @@
             },
             {
               "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
               },
               "parameters": [
@@ -24536,6 +25176,19 @@
                 "Efek",
                 "+",
                 "160"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "bintang bintang kecil di sekitar bentuk pas menang - pencari bentuk ajaib.wav",
+                "2",
+                "",
+                "100",
+                "1"
               ]
             },
             {
