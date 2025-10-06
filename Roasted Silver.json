@@ -7970,26 +7970,6 @@
           "actions": [
             {
               "type": {
-                "value": "ReadStringFromStorage"
-              },
-              "parameters": [
-                "\"GameStorage\"",
-                "\"SavingSystemLevel\"",
-                "",
-                "temp"
-              ]
-            },
-            {
-              "type": {
-                "value": "JSONToVariableStructure2"
-              },
-              "parameters": [
-                "temp",
-                "GameStorage"
-              ]
-            },
-            {
-              "type": {
                 "value": "RePlayMusicCanal"
               },
               "parameters": [
@@ -8009,6 +7989,33 @@
                 "\"easeOutSine\"",
                 "1.5",
                 ""
+              ]
+            }
+          ]
+        },
+        {
+          "disabled": true,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "",
+                "temp"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "temp",
+                "GameStorage"
               ]
             }
           ]
@@ -8077,16 +8084,6 @@
               "actions": [
                 {
                   "type": {
-                    "value": "MettreY"
-                  },
-                  "parameters": [
-                    "Awan1",
-                    "=",
-                    "RandomInRange(5,95)"
-                  ]
-                },
-                {
-                  "type": {
                     "value": "MettreX"
                   },
                   "parameters": [
@@ -8112,16 +8109,6 @@
                 }
               ],
               "actions": [
-                {
-                  "type": {
-                    "value": "MettreY"
-                  },
-                  "parameters": [
-                    "Awan2",
-                    "=",
-                    "RandomInRange(5,95)"
-                  ]
-                },
                 {
                   "type": {
                     "value": "MettreX"
@@ -8151,16 +8138,6 @@
               "actions": [
                 {
                   "type": {
-                    "value": "MettreY"
-                  },
-                  "parameters": [
-                    "Awan3",
-                    "=",
-                    "RandomInRange(5,95)"
-                  ]
-                },
-                {
-                  "type": {
                     "value": "MettreX"
                   },
                   "parameters": [
@@ -8186,16 +8163,6 @@
                 }
               ],
               "actions": [
-                {
-                  "type": {
-                    "value": "MettreY"
-                  },
-                  "parameters": [
-                    "Awan4",
-                    "=",
-                    "RandomInRange(5,95)"
-                  ]
-                },
                 {
                   "type": {
                     "value": "MettreX"
@@ -8506,6 +8473,18 @@
           "type": "BuiltinCommonInstructions::Group",
           "events": [
             {
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "NEXT"
+            },
+            {
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
@@ -8520,42 +8499,23 @@
                 },
                 {
                   "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::Name"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"1\""
+                  ]
+                },
+                {
+                  "type": {
                     "value": "Tween::HasFinished"
                   },
                   "parameters": [
                     "Btn_Next",
                     "Tween",
                     "\"GeserMasuk\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Or"
-                  },
-                  "parameters": [],
-                  "subInstructions": [
-                    {
-                      "type": {
-                        "value": "AnimatableCapability::AnimatableBehavior::Name"
-                      },
-                      "parameters": [
-                        "Btn_Gmbr_Level",
-                        "Animation",
-                        "=",
-                        "\"1\""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "AnimatableCapability::AnimatableBehavior::Name"
-                      },
-                      "parameters": [
-                        "Btn_Gmbr_Level",
-                        "Animation",
-                        "=",
-                        "\"2\""
-                      ]
-                    }
                   ]
                 },
                 {
@@ -8671,7 +8631,7 @@
                     "Gembok",
                     "Tween",
                     "\"GeserMasuk\"",
-                    "-525",
+                    "-715",
                     "\"easeOutQuad\"",
                     "0.8",
                     ""
@@ -8713,8 +8673,8 @@
                   },
                   "parameters": [
                     "GameStorage.LevelSaatIni",
-                    "+",
-                    "1"
+                    "=",
+                    "2"
                   ]
                 },
                 {
@@ -8914,6 +8874,403 @@
               "conditions": [
                 {
                   "type": {
+                    "value": "ButtonStates::ButtonFSM::IsClicked"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "ButtonFSM",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::Name"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"2\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::HasFinished"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"GeserMasuk\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "right_left cursor in select level - pencari bentuk ajaib.wav",
+                    "2",
+                    "",
+                    "100",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Board",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "-965",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Level",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "-740",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "-690",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "-1128",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "-140",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "-830",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"GeserMasuk\"",
+                    "-715",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "0.15"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_HomePage",
+                    "Tween",
+                    "\"FadeIn\"",
+                    "0",
+                    "\"easeOutQuad\"",
+                    "0.3",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "0.8"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSaatIni",
+                    "=",
+                    "3"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Board",
+                    "=",
+                    "1479"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Level",
+                    "=",
+                    "1704"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "=",
+                    "1753"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "=",
+                    "1316"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "=",
+                    "2304"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "=",
+                    "1615"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "=",
+                    "1730"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Board",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "280",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    "1.25"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Level",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "505",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "555",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "117",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "1105",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "415",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"GeserMasuk\"",
+                    "525",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "0.15"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_HomePage",
+                    "Tween",
+                    "\"FadeOut\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "LEVEL 1"
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
                     "value": "NumberVariable"
                   },
                   "parameters": [
@@ -8921,6 +9278,12 @@
                     "=",
                     "1"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
@@ -9022,6 +9385,18 @@
               ]
             },
             {
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "LEVEL 2"
+            },
+            {
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
@@ -9033,6 +9408,12 @@
                     "=",
                     "2"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
@@ -9074,9 +9455,33 @@
                     "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
                   },
                   "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"Muncul\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.25",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "ButtonFSM",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
                     "Btn_Back",
                     "Tween",
-                    "\"Hilang\"",
+                    "\"Muncul\"",
                     "255",
                     "\"easeOutQuad\"",
                     "0.25",
@@ -9128,6 +9533,12 @@
                     "<=",
                     "1"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
@@ -9152,7 +9563,7 @@
                   "parameters": [
                     "Btn_Back",
                     "Tween",
-                    "\"Hilang\"",
+                    "\"Muncul\"",
                     "255",
                     "\"easeOutQuad\"",
                     "0.25",
@@ -9269,24 +9680,50 @@
                     "True",
                     "2"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "Distance"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Btn_Gmbr_Level",
+                    "30",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
                 {
                   "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                    "value": "OpacityCapability::OpacityBehavior::SetValue"
                   },
                   "parameters": [
                     "Gembok",
-                    "Tween",
-                    "\"Muncul\"",
-                    "0",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
+                    "Opacity",
+                    "=",
+                    "0"
                   ]
                 }
               ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "LEVEL 3"
             },
             {
               "type": "BuiltinCommonInstructions::Standard",
@@ -9300,6 +9737,12 @@
                     "=",
                     "3"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
@@ -9343,7 +9786,7 @@
                   "parameters": [
                     "Btn_Next",
                     "Tween",
-                    "\"Muncul\"",
+                    "\"Hilang\"",
                     "0",
                     "\"easeOutQuad\"",
                     "0.25",
@@ -9367,7 +9810,7 @@
                   "parameters": [
                     "Btn_Back",
                     "Tween",
-                    "\"Hilang\"",
+                    "\"Muncul\"",
                     "255",
                     "\"easeOutQuad\"",
                     "0.25",
@@ -9408,6 +9851,12 @@
                     "False",
                     "2"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
@@ -9525,89 +9974,50 @@
                     "True",
                     "2"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "Distance"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Btn_Gmbr_Level",
+                    "30",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
                 {
                   "type": {
-                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                    "value": "OpacityCapability::OpacityBehavior::SetValue"
                   },
                   "parameters": [
                     "Gembok",
-                    "Tween",
-                    "\"Muncul\"",
-                    "0",
-                    "\"easeOutQuad\"",
-                    "0.25",
-                    ""
+                    "Opacity",
+                    "=",
+                    "0"
                   ]
                 }
               ]
             },
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Or"
-                  },
-                  "parameters": [],
-                  "subInstructions": [
-                    {
-                      "type": {
-                        "value": "Tween::IsPlaying"
-                      },
-                      "parameters": [
-                        "Btn_Back",
-                        "Tween",
-                        "\"GeserMasuk\""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "Tween::IsPlaying"
-                      },
-                      "parameters": [
-                        "Btn_Back",
-                        "Tween",
-                        "\"GeserKeluar\""
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Back",
-                    "ButtonFSM",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Next",
-                    "ButtonFSM",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Btn_Gmbr_Level",
-                    "ButtonFSM",
-                    ""
-                  ]
-                }
-              ]
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "BACK"
             },
             {
               "type": "BuiltinCommonInstructions::Standard",
@@ -9624,42 +10034,23 @@
                 },
                 {
                   "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::Name"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"2\""
+                  ]
+                },
+                {
+                  "type": {
                     "value": "Tween::HasFinished"
                   },
                   "parameters": [
                     "Btn_Next",
                     "Tween",
                     "\"GeserMasuk2\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Or"
-                  },
-                  "parameters": [],
-                  "subInstructions": [
-                    {
-                      "type": {
-                        "value": "AnimatableCapability::AnimatableBehavior::Name"
-                      },
-                      "parameters": [
-                        "Btn_Gmbr_Level",
-                        "Animation",
-                        "=",
-                        "\"2\""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "AnimatableCapability::AnimatableBehavior::Name"
-                      },
-                      "parameters": [
-                        "Btn_Gmbr_Level",
-                        "Animation",
-                        "=",
-                        "\"3\""
-                      ]
-                    }
                   ]
                 },
                 {
@@ -9817,7 +10208,7 @@
                   },
                   "parameters": [
                     "GameStorage.LevelSaatIni",
-                    "-",
+                    "=",
                     "1"
                   ]
                 },
@@ -9888,7 +10279,7 @@
                   "parameters": [
                     "Gembok",
                     "=",
-                    "-525"
+                    "-715"
                   ]
                 },
                 {
@@ -10008,6 +10399,456 @@
                     "255",
                     "\"easeOutQuad\"",
                     "0.8",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "ButtonStates::ButtonFSM::IsClicked"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "ButtonFSM",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimatableCapability::AnimatableBehavior::Name"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Animation",
+                    "=",
+                    "\"3\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::HasFinished"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"GeserMasuk2\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "right_left cursor in select level - pencari bentuk ajaib.wav",
+                    "2",
+                    "",
+                    "100",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Board",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "1479",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Level",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "1704",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "1753",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "1316",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "2340",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "1615",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"GeserKeluar\"",
+                    "1730",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "0.15"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_HomePage",
+                    "Tween",
+                    "\"FadeIn\"",
+                    "0",
+                    "\"easeOutQuad\"",
+                    "0.3",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "0.8"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "GameStorage.LevelSaatIni",
+                    "=",
+                    "2"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Board",
+                    "=",
+                    "-965"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Level",
+                    "=",
+                    "-740"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "=",
+                    "-690"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "=",
+                    "-1128"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "=",
+                    "-140"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "=",
+                    "-830"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "MettreX"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "=",
+                    "-715"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Board",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "280",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    "1.25"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Level",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "505",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "TingkatKesulitan",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "555",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "117",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "1105",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "415",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionXTween2"
+                  },
+                  "parameters": [
+                    "Gembok",
+                    "Tween",
+                    "\"GeserMasuk2\"",
+                    "525",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "0.15"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectOpacityTween2"
+                  },
+                  "parameters": [
+                    "Btn_HomePage",
+                    "Tween",
+                    "\"FadeOut\"",
+                    "255",
+                    "\"easeOutQuad\"",
+                    "0.8",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Or"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "value": "Tween::IsPlaying"
+                      },
+                      "parameters": [
+                        "Btn_Back",
+                        "Tween",
+                        "\"GeserMasuk\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Tween::IsPlaying"
+                      },
+                      "parameters": [
+                        "Btn_Back",
+                        "Tween",
+                        "\"GeserKeluar\""
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Back",
+                    "ButtonFSM",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Next",
+                    "ButtonFSM",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Btn_Gmbr_Level",
+                    "ButtonFSM",
                     ""
                   ]
                 }
@@ -19675,6 +20516,17 @@
             },
             {
               "type": {
+                "value": "FadeMusicVolume"
+              },
+              "parameters": [
+                "",
+                "1",
+                "0",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "PlaySoundCanal"
               },
               "parameters": [
@@ -19683,6 +20535,26 @@
                 "2",
                 "",
                 "",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "RePlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "4"
+              ]
+            },
+            {
+              "type": {
+                "value": "FadeMusicVolume"
+              },
+              "parameters": [
+                "",
+                "3",
+                "100",
                 "1"
               ]
             },
@@ -24710,6 +25582,17 @@
             },
             {
               "type": {
+                "value": "FadeMusicVolume"
+              },
+              "parameters": [
+                "",
+                "1",
+                "0",
+                "1"
+              ]
+            },
+            {
+              "type": {
                 "value": "PlaySoundCanal"
               },
               "parameters": [
@@ -24718,6 +25601,26 @@
                 "2",
                 "",
                 "",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "RePlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "4"
+              ]
+            },
+            {
+              "type": {
+                "value": "FadeMusicVolume"
+              },
+              "parameters": [
+                "",
+                "3",
+                "100",
                 "1"
               ]
             },
