@@ -7970,6 +7970,26 @@
           "actions": [
             {
               "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"GameStorage\"",
+                "\"SavingSystemLevel\"",
+                "",
+                "temp"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "temp",
+                "GameStorage"
+              ]
+            },
+            {
+              "type": {
                 "value": "RePlayMusicCanal"
               },
               "parameters": [
@@ -7989,33 +8009,6 @@
                 "\"easeOutSine\"",
                 "1.5",
                 ""
-              ]
-            }
-          ]
-        },
-        {
-          "disabled": true,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "value": "ReadStringFromStorage"
-              },
-              "parameters": [
-                "\"GameStorage\"",
-                "\"SavingSystemLevel\"",
-                "",
-                "temp"
-              ]
-            },
-            {
-              "type": {
-                "value": "JSONToVariableStructure2"
-              },
-              "parameters": [
-                "temp",
-                "GameStorage"
               ]
             }
           ]
@@ -13401,15 +13394,6 @@
             },
             {
               "type": {
-                "value": "PauseMusicCanal"
-              },
-              "parameters": [
-                "",
-                "4"
-              ]
-            },
-            {
-              "type": {
                 "value": "EnableLayerEffect"
               },
               "parameters": [
@@ -15855,28 +15839,6 @@
             },
             {
               "type": {
-                "value": "PlaySoundCanal"
-              },
-              "parameters": [
-                "",
-                "winning the game - pencari bentuk ajaib.wav",
-                "2",
-                "",
-                "",
-                "1"
-              ]
-            },
-            {
-              "type": {
-                "value": "RePlayMusicCanal"
-              },
-              "parameters": [
-                "",
-                "4"
-              ]
-            },
-            {
-              "type": {
                 "value": "FadeMusicVolume"
               },
               "parameters": [
@@ -18111,6 +18073,19 @@
                 "1",
                 "yes",
                 "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "winning scene bgm - pencari bentuk ajaib.wav",
+                "3",
+                "yes",
+                "0",
                 "1"
               ]
             },
@@ -20523,28 +20498,6 @@
                 "1",
                 "0",
                 "1"
-              ]
-            },
-            {
-              "type": {
-                "value": "PlaySoundCanal"
-              },
-              "parameters": [
-                "",
-                "winning the game - pencari bentuk ajaib.wav",
-                "2",
-                "",
-                "",
-                "1"
-              ]
-            },
-            {
-              "type": {
-                "value": "RePlayMusicCanal"
-              },
-              "parameters": [
-                "",
-                "4"
               ]
             },
             {
@@ -23044,6 +22997,19 @@
                 "",
                 "",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlayMusicCanal"
+              },
+              "parameters": [
+                "",
+                "winning scene bgm - pencari bentuk ajaib.wav",
+                "3",
+                "yes",
+                "0",
+                "1"
               ]
             },
             {
@@ -25589,28 +25555,6 @@
                 "1",
                 "0",
                 "1"
-              ]
-            },
-            {
-              "type": {
-                "value": "PlaySoundCanal"
-              },
-              "parameters": [
-                "",
-                "winning the game - pencari bentuk ajaib.wav",
-                "2",
-                "",
-                "",
-                "1"
-              ]
-            },
-            {
-              "type": {
-                "value": "RePlayMusicCanal"
-              },
-              "parameters": [
-                "",
-                "4"
               ]
             },
             {
