@@ -12,7 +12,7 @@
     "antialisingEnabledOnMobile": false,
     "folderProject": false,
     "orientation": "default",
-    "packageName": "com.example.gamename",
+    "packageName": "com.solu.pencari_bentuk_ajaib",
     "pixelsRounding": false,
     "projectUuid": "dd8637a1-53fb-497b-8c2e-3cbd3ccac1cb",
     "scaleMode": "linear",
@@ -70,12 +70,12 @@
       "progressBarMaxWidth": 200,
       "progressBarMinWidth": 40,
       "progressBarWidthPercent": 30,
-      "showGDevelopSplash": true,
+      "showGDevelopSplash": false,
       "showProgressBar": true
     },
     "watermark": {
       "placement": "bottom-left",
-      "showWatermark": true
+      "showWatermark": false
     },
     "authorIds": [
       "MHVwvFtpnyMONf4oYp8WtVBwwOu1"
